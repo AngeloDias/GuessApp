@@ -40,6 +40,7 @@ class TitleFragment : Fragment() {
         binding.playGameButton.setOnClickListener {
             findNavController().navigate(TitleFragmentDirections.actionTitleToGame())
         }
+
         return binding.root
     }
 }
