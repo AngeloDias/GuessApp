@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.android.guesstheword.R
 import com.example.android.guesstheword.databinding.ScoreFragmentBinding
 
@@ -49,12 +50,13 @@ class ScoreFragment : Fragment() {
                 false
         )
 
+        val scoreFragmentArgs by navArgs<ScoreFragmentArgs>()
+
         // Get args using by navArgs property delegate
-        viewModelFactory = ScoreViewModelFactory(0)
+        viewModelFactory = ScoreViewModelFactory(scoreFragmentArgs.score)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ScoreViewModel::class.java)
         binding.scoreViewModel = viewModel
         binding.lifecycleOwner = this
-        binding.scoreText.text = viewModel.score.toString()
 
         viewModel.eventPlayAgain.observe(this, Observer { playAgain ->
             if (playAgain) {
